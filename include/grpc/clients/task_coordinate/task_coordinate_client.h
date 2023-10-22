@@ -20,6 +20,7 @@ public:
     class TaskCoordinateClientBuilder;
     bool informPreviousServiceInfoRequest(
             int64_t taskId, 
+            std::string preserviceName,
             std::string preserviceIp, 
             std::string preservicePort, 
             std::vector<std::pair<std::string, std::string>> args);

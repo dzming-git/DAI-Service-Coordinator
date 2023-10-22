@@ -11,11 +11,13 @@ TaskCoordinateClient::TaskCoordinateClient(TaskCoordinateClientBuilder* builder)
 
 bool TaskCoordinateClient::informPreviousServiceInfoRequest(
         int64_t taskId, 
+        std::string preserviceName,
         std::string preserviceIp, 
         std::string preservicePort,
         std::vector<std::pair<std::string, std::string>> args) {
     taskCoordinate::InformPreviousServiceInfoRequest request;
     request.set_taskid(taskId);
+    request.set_preservicename(preserviceName);
     request.set_preserviceip(preserviceIp);
     request.set_preserviceport(preservicePort);
     for (auto arg: args) {
