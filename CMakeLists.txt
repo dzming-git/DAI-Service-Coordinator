@@ -88,6 +88,7 @@ include_directories("${PROJECT_SOURCE_DIR}/include")
 
 set(HEADERS
     include/consul/consul_client.h
+    include/consul/server_info.h
     include/grpc/clients/task_coordinate/task_coordinate_client.h
     include/grpc/clients/task_coordinate/task_coordinate_client_builder.h
 
@@ -96,6 +97,7 @@ set(HEADERS
 set(SOURCES
     main.cpp
     src/consul/consul_client.cpp
+    src/consul/server_info.cpp
     src/grpc/task_coordinate/task_coordinate_client.cpp
     src/grpc/task_coordinate/task_coordinate_client_builder.cpp
     )
