@@ -84,22 +84,21 @@ set(HV_LIBRARY /usr/local/lib/libhv.so)
 
 # include
 include_directories("${GENERATED_OUT_PATH}")
-include_directories("${PROJECT_SOURCE_DIR}/include")
+include_directories("${PROJECT_SOURCE_DIR}/src")
 
 set(HEADERS
-    include/consul/consul_client.h
-    include/consul/server_info.h
-    include/grpc/clients/task_coordinate/task_coordinate_client.h
-    include/grpc/clients/task_coordinate/task_coordinate_client_builder.h
-
+    src/consul/consul_client.h
+    src/consul/server_info.h
+    src/grpc/clients/task_coordinate/task_coordinate_client.h
+    src/grpc/clients/task_coordinate/task_coordinate_client_builder.h
     )
 
 set(SOURCES
     main.cpp
     src/consul/consul_client.cpp
     src/consul/server_info.cpp
-    src/grpc/task_coordinate/task_coordinate_client.cpp
-    src/grpc/task_coordinate/task_coordinate_client_builder.cpp
+    src/grpc/clients/task_coordinate/task_coordinate_client.cpp
+    src/grpc/clients/task_coordinate/task_coordinate_client_builder.cpp
     )
 
 add_executable(${PROJECT_NAME} ${SOURCES} ${HEADERS})

@@ -42,6 +42,11 @@ std::string ServerInfo::getServiceAddress() const {
     return serviceAddress;
 }
 
+ServerInfo & ServerInfo::setServicePort(uint16_t port) {
+    servicePort = std::to_string(port);
+    return *this;
+}
+
 ServerInfo& ServerInfo::setServicePort(std::string port) {
     servicePort = port;
     return *this;

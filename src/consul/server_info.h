@@ -34,6 +34,7 @@ public:
     ServerInfo& setServiceAddress(std::string address);
     std::string getServiceAddress() const;
 
+    ServerInfo& setServicePort(uint16_t port);
     ServerInfo& setServicePort(std::string port);
     std::string getServicePort() const;
 

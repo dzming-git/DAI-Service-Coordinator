@@ -5,7 +5,7 @@
             "includePath": [
                 "/usr/local/include",
                 "${workspaceFolder}/**",
-                "${workspaceFolder}/include",
+                "${workspaceFolder}/src",
                 "${workspaceFolder}/generated"
             ],
             "defines": [],
