@@ -2,7 +2,7 @@
 cmake_minimum_required(VERSION 3.10)
 
 # 项目名 语言
-project(task_coordinator C CXX)
+project(service_coordinator C CXX)
 
 # C++版本
 set(CMAKE_CXX_STANDARD 20)
@@ -44,7 +44,7 @@ endif()
 
 ## 设置生成文件路径
 
-set(protos task_coordinate)
+set(protos service_coordinate)
 foreach(proto ${protos})
     message("current generating: ${proto}")
     set(data_proto ${PROJECT_SOURCE_DIR}/resources/protos/${proto}.proto)
@@ -89,16 +89,16 @@ include_directories("${PROJECT_SOURCE_DIR}/src")
 set(HEADERS
     src/consul/consul_client.h
     src/consul/service_info.h
-    src/grpc/clients/task_coordinate/task_coordinate_client.h
-    src/grpc/clients/task_coordinate/task_coordinate_client_builder.h
+    src/grpc/clients/service_coordinate/service_coordinate_client.h
+    src/grpc/clients/service_coordinate/service_coordinate_client_builder.h
     )
 
 set(SOURCES
     main.cpp
     src/consul/consul_client.cpp
     src/consul/service_info.cpp
-    src/grpc/clients/task_coordinate/task_coordinate_client.cpp
-    src/grpc/clients/task_coordinate/task_coordinate_client_builder.cpp
+    src/grpc/clients/service_coordinate/service_coordinate_client.cpp
+    src/grpc/clients/service_coordinate/service_coordinate_client_builder.cpp
     )
 
 add_executable(${PROJECT_NAME} ${SOURCES} ${HEADERS})

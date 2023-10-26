@@ -1,23 +1,23 @@
 /*****************************************************************************
 *  Copyright © 2023 - 2023 dzming.                                           *
 *                                                                            *
-*  @file     task_coordinate_client.h                                        *
+*  @file     service_coordinate_client.h                                        *
 *  @brief    the client of task coordinate service                           *
 *  @author   dzming                                                          *
 *  @email    dzm_work@163.com                                                *
 *                                                                            *
 *----------------------------------------------------------------------------*
-*  Remark  :  proto file: resources/protos/task_coordinate.proto             *
+*  Remark  :  proto file: resources/protos/service_coordinate.proto             *
 *****************************************************************************/
-#ifndef _TASK_COORDINATE_CLIENT_H_
-#define _TASK_COORDINATE_CLIENT_H_
+#ifndef _SERVICE_COORDINATE_CLIENT_H_
+#define _SERVICE_COORDINATE_CLIENT_H_
 
-#include "protos/task_coordinate/task_coordinate.grpc.pb.h"
-#include "protos/task_coordinate/task_coordinate.pb.h"
+#include "protos/service_coordinate/service_coordinate.grpc.pb.h"
+#include "protos/service_coordinate/service_coordinate.pb.h"
 
-class TaskCoordinateClient {
+class ServiceCoordinateClient {
 public:
-    class TaskCoordinateClientBuilder;
+    class ServiceCoordinateClientBuilder;
     bool informPreviousServiceInfoRequest(
             int64_t taskId, 
             std::string preserviceName,
@@ -25,8 +25,8 @@ public:
             std::string preservicePort, 
             std::vector<std::pair<std::string, std::string>> args);
 private:
-    TaskCoordinateClient(TaskCoordinateClientBuilder* builder);
-    std::unique_ptr<taskCoordinate::Communicate::Stub> stub;
+    ServiceCoordinateClient(ServiceCoordinateClientBuilder* builder);
+    std::unique_ptr<serviceCoordinate::Communicate::Stub> stub;
 };
 
-#endif /* _TASK_COORDINATE_CLIENT_H_ */
+#endif /* _SERVICE_COORDINATE_CLIENT_H_ */

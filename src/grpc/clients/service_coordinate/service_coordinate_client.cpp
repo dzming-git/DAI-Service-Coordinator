@@ -1,32 +1,32 @@
-#include "grpc/clients/task_coordinate/task_coordinate_client.h"
-#include "grpc/clients/task_coordinate/task_coordinate_client_builder.h"
+#include "grpc/clients/service_coordinate/service_coordinate_client.h"
+#include "grpc/clients/service_coordinate/service_coordinate_client_builder.h"
 #include <grpcpp/grpcpp.h>
 
-TaskCoordinateClient::TaskCoordinateClient(TaskCoordinateClientBuilder* builder) {
+ServiceCoordinateClient::ServiceCoordinateClient(ServiceCoordinateClientBuilder* builder) {
     std::string addr = builder->getIp() + ":" + builder->getPort();
     std::cout << "grpc client: " << addr << std::endl;
     auto channelShared = grpc::CreateChannel(addr, grpc::InsecureChannelCredentials());
-    stub = taskCoordinate::Communicate::NewStub(channelShared);
+    stub = serviceCoordinate::Communicate::NewStub(channelShared);
 }
 
-bool TaskCoordinateClient::informPreviousServiceInfoRequest(
+bool ServiceCoordinateClient::informPreviousServiceInfoRequest(
         int64_t taskId, 
         std::string preserviceName,
         std::string preserviceIp, 
         std::string preservicePort,
         std::vector<std::pair<std::string, std::string>> args) {
-    taskCoordinate::InformPreviousServiceInfoRequest request;
+    serviceCoordinate::InformPreviousServiceInfoRequest request;
     request.set_taskid(taskId);
     request.set_preservicename(preserviceName);
     request.set_preserviceip(preserviceIp);
     request.set_preserviceport(preservicePort);
     for (auto arg: args) {
-        taskCoordinate::InformPreviousServiceInfoRequest::Argument argument;
+        serviceCoordinate::InformPreviousServiceInfoRequest::Argument argument;
         argument.set_key(arg.first);
         argument.set_value(arg.second);
         request.add_args()->CopyFrom(argument);
     }
-    taskCoordinate::InformPreviousServiceInfoResponse response;
+    serviceCoordinate::InformPreviousServiceInfoResponse response;
     grpc::ClientContext context;
     auto status = stub->informPreviousServiceInfo(&context, request, &response);
     if (status.ok()) {
