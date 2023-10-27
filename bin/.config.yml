@@ -1,0 +1,9 @@
+service:
+  name: service coordinator
+  port: 5000
+  tags: 
+    - interface:gRPC
+
+consul:
+  ip: 172.18.0.7
+  port: 8500

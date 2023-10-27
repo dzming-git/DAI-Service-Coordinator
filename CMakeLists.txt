@@ -102,6 +102,7 @@ set(HEADERS
     src/consul/service_info.h
     src/grpc/clients/service_coordinator/service_coordinator_client.h
     src/grpc/clients/service_coordinator/service_coordinator_client_builder.h
+    src/config/config.h
     )
 
 set(SOURCES
@@ -110,6 +111,7 @@ set(SOURCES
     src/consul/service_info.cpp
     src/grpc/clients/service_coordinator/service_coordinator_client.cpp
     src/grpc/clients/service_coordinator/service_coordinator_client_builder.cpp
+    src/config/config.cpp
     )
 
 add_executable(${PROJECT_NAME} ${SOURCES} ${HEADERS})
