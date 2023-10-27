@@ -82,6 +82,9 @@ endforeach()
 # libhv
 set(HV_LIBRARY /usr/local/lib/libhv.so)
 
+# yaml-cpp
+set(YAMLCPP_LIBRARY /usr/local/lib/libyaml-cpp.a)
+
 # include
 include_directories("${GENERATED_OUT_PATH}")
 include_directories("${PROJECT_SOURCE_DIR}/src")
@@ -126,3 +129,6 @@ endforeach()
 
 # linhv
 target_link_libraries(${PROJECT_NAME} ${HV_LIBRARY})
+
+# yaml-cpp
+target_link_libraries(${PROJECT_NAME} ${YAMLCPP_LIBRARY})

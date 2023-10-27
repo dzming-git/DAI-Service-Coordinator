@@ -19,6 +19,7 @@ RUN apt update && \
 CMD ["echo", "140.82.114.4", "github.com", ">>", "/etc/hosts"]
 
 # 安装gRPC
+# https://github.com/grpc/grpc
 
 ENV GRPC_VERSION='1.58.1'
 
@@ -44,13 +45,31 @@ RUN \
 
 RUN \
     cd / && \
-    git clone https://github.com/ithewei/libhv.git  && \
+    git clone https://github.com/ithewei/libhv  && \
     cd /libhv && \
     ./configure && \
     make && \
     make install && \
     ldconfig && \
     rm -rf /libhv
+
+# 安装yaml-cpp
+# https://github.com/jbeder/yaml-cpp
+
+ENV YAML_CPP_VERSION='0.7.0'
+
+RUN \
+    cd / && \
+    git clone https://github.com/jbeder/yaml-cpp  && \
+    cd /yaml-cpp && \
+    git checkout yaml-cpp-${YAML_CPP_VERSION} && \
+    mkdir build && \
+    cd build && \
+    cmake .. && \
+    make && \
+    make install && \
+    ldconfig && \
+    rm -rf /yaml-cpp
 
 EXPOSE 5000
 
