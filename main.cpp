@@ -1,4 +1,4 @@
-#include "grpc/clients/service_coordinate/service_coordinate_client_builder.h"
+#include "grpc/clients/service_coordinator/service_coordinator_client_builder.h"
 #include <vector>
 #include "consul/consul_client.h"
 #include <unordered_map>
@@ -26,12 +26,12 @@ void test1() {
     args.emplace_back("UserName", "admin");
     args.emplace_back("Password", "Scu50501");
     args.emplace_back("Port", "8000");
-    ServiceCoordinateClient::ServiceCoordinateClientBuilder serviceCoordinateClientBuilder;
-    auto serviceCoordinateClient = serviceCoordinateClientBuilder
+    ServiceCoordinatorClient::ServiceCoordinatorClientBuilder serviceCoordinatorClientBuilder;
+    auto serviceCoordinatorClient = serviceCoordinatorClientBuilder
         .setIp("172.18.0.9")
         .setPort("5000")
         .build();
-    serviceCoordinateClient->informPreviousServiceInfoRequest(taskId, imageHarmonyName, imageHarmonyIp, "5000", args);
+    serviceCoordinatorClient->informPreviousServiceInfoRequest(taskId, imageHarmonyName, imageHarmonyIp, "5000", args);
 }
 
 void test2() {
@@ -70,13 +70,13 @@ void test2() {
     }
 
 
-    ServiceCoordinateClient::ServiceCoordinateClientBuilder serviceCoordinateClientBuilder;
+    ServiceCoordinatorClient::ServiceCoordinatorClientBuilder serviceCoordinatorClientBuilder;
     for (const auto& connection : serviceConnections) {
-        auto serviceCoordinateClient = serviceCoordinateClientBuilder
+        auto serviceCoordinatorClient = serviceCoordinatorClientBuilder
             .setIp(connection->curNode->serviceIp)
             .setPort(connection->curNode->servicePort)
             .build();
-        serviceCoordinateClient->informPreviousServiceInfoRequest(
+        serviceCoordinatorClient->informPreviousServiceInfoRequest(
             taskId, 
             connection->preNode->serviceName, 
             connection->preNode->serviceIp,

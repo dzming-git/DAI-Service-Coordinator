@@ -1,32 +1,32 @@
-#include "grpc/clients/service_coordinate/service_coordinate_client.h"
-#include "grpc/clients/service_coordinate/service_coordinate_client_builder.h"
+#include "grpc/clients/service_coordinator/service_coordinator_client.h"
+#include "grpc/clients/service_coordinator/service_coordinator_client_builder.h"
 #include <grpcpp/grpcpp.h>
 
-ServiceCoordinateClient::ServiceCoordinateClient(ServiceCoordinateClientBuilder* builder) {
+ServiceCoordinatorClient::ServiceCoordinatorClient(ServiceCoordinatorClientBuilder* builder) {
     std::string addr = builder->getIp() + ":" + builder->getPort();
     std::cout << "grpc client: " << addr << std::endl;
     auto channelShared = grpc::CreateChannel(addr, grpc::InsecureChannelCredentials());
-    stub = serviceCoordinate::Communicate::NewStub(channelShared);
+    stub = serviceCoordinator::Communicate::NewStub(channelShared);
 }
 
-bool ServiceCoordinateClient::informPreviousServiceInfoRequest(
+bool ServiceCoordinatorClient::informPreviousServiceInfoRequest(
         int64_t taskId, 
         std::string preserviceName,
         std::string preserviceIp, 
         std::string preservicePort,
         std::vector<std::pair<std::string, std::string>> args) {
-    serviceCoordinate::InformPreviousServiceInfoRequest request;
+    serviceCoordinator::InformPreviousServiceInfoRequest request;
     request.set_taskid(taskId);
     request.set_preservicename(preserviceName);
     request.set_preserviceip(preserviceIp);
     request.set_preserviceport(preservicePort);
     for (auto arg: args) {
-        serviceCoordinate::InformPreviousServiceInfoRequest::Argument argument;
+        serviceCoordinator::InformPreviousServiceInfoRequest::Argument argument;
         argument.set_key(arg.first);
         argument.set_value(arg.second);
         request.add_args()->CopyFrom(argument);
     }
-    serviceCoordinate::InformPreviousServiceInfoResponse response;
+    serviceCoordinator::InformPreviousServiceInfoResponse response;
     grpc::ClientContext context;
     auto status = stub->informPreviousServiceInfo(&context, request, &response);
     if (status.ok()) {

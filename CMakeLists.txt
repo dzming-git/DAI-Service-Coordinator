@@ -44,7 +44,7 @@ endif()
 
 ## 设置生成文件路径
 
-set(protos service_coordinate)
+set(protos service_coordinator)
 foreach(proto ${protos})
     message("current generating: ${proto}")
     set(data_proto ${PROJECT_SOURCE_DIR}/resources/protos/${proto}.proto)
@@ -89,16 +89,16 @@ include_directories("${PROJECT_SOURCE_DIR}/src")
 set(HEADERS
     src/consul/consul_client.h
     src/consul/service_info.h
-    src/grpc/clients/service_coordinate/service_coordinate_client.h
-    src/grpc/clients/service_coordinate/service_coordinate_client_builder.h
+    src/grpc/clients/service_coordinator/service_coordinator_client.h
+    src/grpc/clients/service_coordinator/service_coordinator_client_builder.h
     )
 
 set(SOURCES
     main.cpp
     src/consul/consul_client.cpp
     src/consul/service_info.cpp
-    src/grpc/clients/service_coordinate/service_coordinate_client.cpp
-    src/grpc/clients/service_coordinate/service_coordinate_client_builder.cpp
+    src/grpc/clients/service_coordinator/service_coordinator_client.cpp
+    src/grpc/clients/service_coordinator/service_coordinator_client_builder.cpp
     )
 
 add_executable(${PROJECT_NAME} ${SOURCES} ${HEADERS})
